@@ -46,6 +46,6 @@ def cdf(x: ArrayLike, loc: ArrayLike = 0, scale: ArrayLike = 1) -> Array:
 @_wraps(osp_stats.cauchy.ppf, update_doc=False)
 def ppf(q: ArrayLike, loc: ArrayLike = 0, scale: ArrayLike = 1) -> Array:
     q, loc, scale = _promote_args_inexact("cauchy.ppf", q, loc, scale)
-    pi = _lax_const(q, np.pi) 
+    pi = _lax_const(q, np.pi)
     half = _lax_const(q, 0.5)
     return lax.add(loc, lax.mul(scale, lax.tan(lax.mul(pi, lax.sub(q, half)))))
