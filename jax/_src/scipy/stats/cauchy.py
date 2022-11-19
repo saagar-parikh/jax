@@ -49,4 +49,3 @@ def ppf(q: ArrayLike, loc: ArrayLike = 0, scale: ArrayLike = 1) -> Array:
     pi = _lax_const(q, np.pi) 
     half = _lax_const(q, 0.5)
     return lax.add(loc, lax.mul(scale, lax.tan(lax.mul(pi, lax.sub(q, half)))))
-    

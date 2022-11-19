@@ -49,12 +49,3 @@ def cdf(x: ArrayLike, df: ArrayLike, loc: ArrayLike = 0, scale: ArrayLike = 1) -
     # cdf_val = lax.div(lax.igamma(lax.div(df,two), lax.div(y,two)), lax.exp(lax.lgamma(lax.div(df,two))))
     cdf_val = lax.igamma(lax.div(df, two), lax.div(y, two))
     return where(lax.lt(x, loc), -inf, cdf_val)
-
-# Need inverse of the incomplete gamma function in lax
-# @_wraps(osp_stats.chi2.ppf, update_doc=False)
-# def ppf(q: ArrayLike, df: ArrayLike, loc: ArrayLike = 0, scale: ArrayLike = 1) -> Array:
-#     q, df, loc, scale = _promote_args_inexact("chi2.ppf", q, df, loc, scale)
-#     zero = _lax_const(q, 0)
-#     two = _lax_const(q, 2)
-#     ppf_val = lax.mul(lax.mul(scale, lax.igammainv(lax.div(df, two), q)), two)
-#     return where(lax.lt(q, zero), -inf, ppf_val)

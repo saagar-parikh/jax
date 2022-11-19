@@ -42,11 +42,3 @@ def cdf(x: ArrayLike, a: ArrayLike, loc: ArrayLike = 0, scale: ArrayLike = 1) ->
     x, a, loc, scale = _promote_args_inexact("gamma.cdf", x, a, loc, scale)
     y = lax.div(lax.sub(x, loc), scale)
     return lax.igamma(a, y)
-
-# Need inverse of the incomplete gamma function in lax
-# Add c from scipy.stats.gamma
-# @_wraps(osp_stats.gamma.ppf, update_doc=False)
-# def ppf(x: ArrayLike, a: ArrayLike, loc: ArrayLike = 0, scale: ArrayLike = 1) -> Array:
-#     x, a, loc, scale = _promote_args_inexact("gamma.ppf", x, a, loc, scale)
-#     y = lax.div(lax.sub(x, loc), scale)
-#     return lax.igammainv(a, y)
